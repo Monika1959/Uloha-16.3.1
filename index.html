@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>KedyMamNarodeniny</title>
+
+</head>
+<body>
+
+<label for="date">Vyber dátum narodenia: </label>
+<br><br>
+<input type="date" id="date" value="2023-01-01"> 
+
+<input type="button" onclick="vypocetNarodenin(); rocneObdobie()" value="Potvrď!">
+
+
+<script>
+
+    const date1 = new Date(); //aktualny den
+    const date2 = new Date(); //narodeninovy den
+
+function vypocetNarodenin(){
+
+    console.log("\n*Najbližie máš narodeniny o toľkoto dní: ")
+
+    const d = new Date(document.getElementById("date").value);
+
+    let rozdiel = (Date.now() - d);
+
+    if(rozdiel < 0){
+        rozdiel = -rozdiel;
+    }
+
+    console.log(Math.floor(rozdiel / 1000 / 60 / 60 / 24));
+
+    if(date2.getUTCMonth() < date1.getUTCMonth()){
+
+        date2.setUTCFullYear(date2.getFullYear() + 1);
+        console.log(date2.getUTCFullYear());
+
+    }
+
+    let narodeniny = date2.getTime() - date1.getTime();
+
+    return narodeniny;
+
+    console.log(narodeniny);
+
+}
+
+let narodeniny = document.getElementById("date").innerText;
+
+
+function rocneObdobie() {
+   
+    let mesiac = document.getElementById("date").value.split("-")[1];
+
+  
+    if (1 <= mesiac && mesiac <= 2 || mesiac == 12) {
+    console.log("Tento mesiac patrí do ročného obdobia: zima");
+    }
+
+    if (3 <= mesiac && mesiac <= 5) {
+      console.log("Tento mesiac patrí do ročného obdobia: jar");
+    }
+
+    if (6 <= mesiac && mesiac <= 8) {
+      console.log("Tento mesiac patrí do ročného obdobia: leto");
+    }
+
+    if (9 <= mesiac && mesiac < 12) {
+      console.log("Tento mesiac patrí do ročného obdobia: jeseň");
+    }
+}
+    </script>
+</body>
+</html>
